@@ -3,6 +3,7 @@
 #10/26/2022
 import sys
 from matplotlib import image
+import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import numpy as np
 
@@ -33,4 +34,21 @@ Average_Color_Int = (kmeans_output.cluster_centers_).astype(int)
 #Assign colors to theme template automatically (darker colors are background ect..)
 
 print("Theme:")
-print(Average_Color_Int) # TODO convert output ot HEX
+print(Average_Color_Int)
+
+color_img = np.tile(0, (n_clust*100,100 ,3))
+
+color_img[150][50][1] = 0;
+for i in range (0,n_clust):
+    print(range (i*100,(i*100)+100))
+    for j in range (0,3):
+        for k in range (i*100,(i*100)+100):
+            for l in range (0,100):
+                color_img[k][l][j] = Average_Color_Int[i][j]
+
+imgplot = plt.imshow(color_img)
+plt.show()
+
+# TODO convert output ot HEX and print to file
+
+
